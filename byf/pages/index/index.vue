@@ -2,7 +2,8 @@
     <view>
         <!-- 微信登录，获取微信相关用户信息 -->
         <button type="primary" open-type="getUserInfo" lang="zh_CN" @getuserinfo="onGotUserInfo">获取用户信息</button>
-    </view>
+		
+	</view>
 </template>
 
 <script>
