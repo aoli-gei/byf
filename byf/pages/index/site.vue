@@ -56,8 +56,14 @@
 									success(res){
 										uni.showModal({
 											content: "解除绑定成功！",
-											showCancel: false
+											showCancel: false,
+											success:(res)=>{
+												uni.redirectTo({
+												    url: '/pages/index/index'
+												});
+											}
 										})
+										
 									}
 								})
 							})

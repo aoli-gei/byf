@@ -7,37 +7,41 @@
 			</view>
 			<view class="avtor-title">
 				<view class="title-name">{{avtor.title}}</view>
-				<view class="title-number">邀请码:{{avtor.number}}</view>
+				<view class="title-number" @click=paste()>邀请码-(请点击此处复制)</view>
+				<view class="title-number" @click=paste()>{{avtor.number}}</view>
 			</view>
 		</view>
 		
 		<!-- 使用的导航 -->
 		<view class="navgat-funct">
 			<block v-for="(item,index) in navgatList" :key="index">
-				<navigator class="funct-item" :url="item.url">
+				<!-- <navigator class="funct-item" :url="item.url"> -->
+				<view class="funct-item" @click=test(item.title,item.url)>
 					<view class="item-title">{{item.title}}</view>
 					<view class="item-right">
 						<image src="/static/right.svg"></image>
 					</view>
-				</navigator>
+				</view>
 			</block>
 		</view>
 		
 		<!-- 退出登录 -->
 		<view class="logout">
-			<view class="logout-title">退出登录</view>
+			<view class="logout-title" @click=out()>退出登录</view>
 		</view>
 	</view>
 </template>
+
 
 <script>
 	export default {
 		data() {
 			return {
+				state:'',
 				avtor:{
 					img:"/static/autor.jpg",
-					title:"MR.X",
-					number:"123456"
+					title:"加载中....",
+					number:"加载中...."
 				},
 				navgatList:[
 					{
@@ -50,7 +54,7 @@
 						title:"关于 TA",
 						url:"/pages/index/about",
 					},{
-						title:"系统设置",
+						title:"解除关系",
 						url:"/pages/index/site",
 					},{
 						title:"关系绑定",
@@ -60,10 +64,83 @@
 			}
 		},
 		onLoad() {
-
+			this.begin1();
+			
 		},
 		methods: {
-
+			paste() {
+				
+				uni.setClipboardData({
+					data: this.avtor.number
+				});
+				uni.showToast({
+					title:"复制成功！",
+					icon:"none"
+				});
+			},
+			test(title,url1){
+				if(this.state==''){
+					if(title=="关系绑定"){
+						uni.navigateTo({
+						    url: url1
+						});
+					}
+					else {
+						uni.showModal({
+							content: "请先绑定关系",
+							showCancel: false
+						});
+					}
+				}
+				else {
+					if(title!="关系绑定"){
+						uni.navigateTo({
+						    url: url1
+						});
+					}
+					else {
+						uni.showModal({
+							content: "你已绑定了关系",
+							showCancel: false
+						});
+					}
+				}
+			},
+			begin1(){
+				try {
+				    this.avtor.number = uni.getStorageSync('_id');
+					this.avtor.title=uni.getStorageSync('username')
+					if(uni.getStorageSync('pic')){
+						this.avtor.img=uni.getStorageSync('pic')
+					}
+					uniCloud.callFunction({
+						name:"getu",
+						data:{
+							_id:this.avtor.number
+						}
+					}).then((res)=>{
+						this.state=res.result.data["0"].lover_id
+						if(res.result.data["0"].pic){
+							this.avtor.img=res.result.data["0"].pic
+						}
+						this.avtor.number=uni.getStorageSync('_id')
+					})
+				} catch (e) {
+				    // error
+				}
+			},
+			out(){
+				uni.showModal({
+					title:"退出登录",
+					content:"确定退出登录吗?再想想吧",
+					success:(res)=>{
+						uni.clearStorageSync();
+						uni.reLaunch({
+						    url: '/pages/test/test'
+						});
+					}
+				});
+			}
 		}
 	}
 </script>

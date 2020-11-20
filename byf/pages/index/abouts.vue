@@ -4,21 +4,25 @@
 		<view class="content">
 			<view class="header">
 				<view class="header-item">
-					<view class="item-birthday">
+					<!-- <view class="item-birthday">
 						TA的生日:<text style="margin-left: 20rpx;">2002年11月3日</text>
+					</view> -->
+					<view class="item-color">
+						<view class="color-title" >TA的生日:</view>
+						<input placeholder="请输入日期"  v-model="message.date"/>
 					</view>
 					<view class="item-color">
 						<view class="color-title">TA喜欢的颜色:</view>
-						<input placeholder="请输入喜欢的颜色"  v-model="likeColor"/>
+						<input placeholder="请输入喜欢的颜色"  v-model="message.color"/>
 					</view>
 					<view class="item-color">
 						<view class="color-title">TATA喜欢的明星:</view>
-						<input placeholder="请输入喜欢的明星"  v-model="mingxing"/>
+						<input placeholder="请输入喜欢的明星"  v-model="message.fan"/>
 					</view>
 					<view class="item-shiwu">
 						<view class="shiwu-left">TA喜欢的食物</view>
 						<view class="shiwu-right">
-							<textarea placeholder="请输入喜欢的食物"  v-model="likeShiwu"/>
+							<textarea placeholder="请输入喜欢的食物"  v-model="message.like"/>
 						</view>
 					</view>
 				</view>
@@ -34,18 +38,57 @@
 	export default {
 		data() {
 			return {
-				mingxing:"",
-				likeColor:"",
-				likeShiwu:""
+				message:{
+					date:"",
+					color:'',
+					fan:'',
+					like:''
+				}
 			};
 		},
 		methods:{
 			submit(){
-				uni.showToast({
-					title:this.mingxing+"-"+this.likeColor+"-"+this.likeShiwu,
-					icon:"none"
-				});
-				console.log(this.mingxing+"-"+this.likeColor+"-"+this.likeShiwu)
+				try {
+				    const value = uni.getStorageSync('_id');
+				    if (value) {
+				        console.log(value);
+				    }
+					uniCloud.callFunction({
+						name:"updmessage",
+						data:{
+							_id:value,
+							message:this.message
+						},
+						success(res){
+							uni.showToast({
+								title:"更新成功！",
+								icon:"none",
+								success:(res)=>{
+									setTimeout(function(){
+										// uni.redirectTo({
+									 //    url: '/pages/index/about'
+										// });
+										uni.redirectTo({
+										    url: '/pages/index/about'
+										});
+									},1000)
+								}
+							});
+						},
+						fail() {
+						    uni.showToast({
+						    	title:"更新失败！",
+						    	icon:"none"
+						    });
+						}
+					})
+				} catch (e) {
+				    uni.showToast({
+				    	title:"更新失败！",
+				    	icon:"none"
+				    });// error
+				}
+				console.log('')
 			}
 		}
 	}

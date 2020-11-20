@@ -6,7 +6,7 @@ exports.main = async (event, context) => {
 	console.log('event : ', event)
 	const collection = db.collection('ticket')
 	let res = await collection.where({
-		from_id: event.from_id
+		_id: event._id
 	}).get()
 	console.log('user : ', res)
 	//返回数据给客户端

@@ -1,5 +1,5 @@
 {
-    "name" : "想跟你借个未来",
+    "name" : "想跟你借一个未来",
     "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
@@ -57,7 +57,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx2ff4e825a5b69fcb",
         "setting" : {
             "urlCheck" : false
         },
