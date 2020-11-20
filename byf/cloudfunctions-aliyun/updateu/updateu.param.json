@@ -11,5 +11,5 @@
  // { _id: '5fb63c40e1ba050001bf9d20',
  //    lover_id: '5fb63caf48eb4300019c1d55' 
 	// } ]
-[ { _id: '5fb63c40e1ba050001bf9d20',
-    lover_id: '5fb63caf48eb4300019c1d55' } ]
+ { _id: '5fb63caf48eb4300019c1d55',
+    lover_id: '123' } 
