@@ -36,9 +36,10 @@
 							_id:this.inviteCode
 						}
 					}).then((res)=>{
+						console.log(res)
 						this.number=res.result.affectedDocs
-						console.log('人数：',this.number)
-						if(this.number>0&&value!=this.inviteCode){
+						console.log('人数：',this.number,res.result.data["0"].lover_id)
+						if(this.number>0&&value!=this.inviteCode&&res.result.data['0'].lover_id==''){
 							uniCloud.callFunction({
 								name:'updateu',
 								data:{
@@ -60,16 +61,22 @@
 								})
 							})
 						}
-						else {
+						else if(this.number==0||value==this.inviteCode){
 							uni.showModal({
 								content: "绑定失败，该邀请码无效",
+								showCancel: false
+							})
+						}
+						else {
+							uni.showModal({
+								content: "绑定失败，此人已绑定了关系",
 								showCancel: false
 							})
 						}
 					}).catch((err)=>{
 						uni.hideLoading()
 						uni.showModal({
-							content: `绑定失败，网络错误`,
+							content: `绑定错误`,
 							showCancel: false
 						})
 						console.error(err)
