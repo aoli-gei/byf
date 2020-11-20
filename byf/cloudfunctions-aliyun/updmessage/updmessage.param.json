@@ -1,4 +1,10 @@
 // 本文件中的json内容将在云函数【运行】时作为参数传给云函数。
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
-{	_id:'5fb63caf48eb4300019c1d55'
+{	_id:"5fb63caf48eb4300019c1d55",
+	message:{
+		date:"1234",
+		color:'123',
+		fan:'12',
+		like:'1'
+	}
 }

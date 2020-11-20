@@ -7,16 +7,8 @@ exports.main = async (event, context) => {
 	const res = await collection.where({
 	    _id:event._id 
 	}).update({
-	    lover_id: event.lover_id,
-		create_time:Date.now()
-	})
-	const res1 = await collection.where({
-	    _id:event.lover_id
-	}).update({
-	    lover_id: event._id,
-		create_time:Date.now()
+	    message:event.message
 	})
 	//返回数据给客户端
-	console.log("res: ",res)
-	return res
+	return event
 };

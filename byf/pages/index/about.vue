@@ -5,23 +5,23 @@
 			<view class="header">
 				<view class="header-item">
 					<view class="item-birthday">
-						TA的生日:<text style="margin-left: 20rpx;">2002年11月3日</text>
+						TA的生日:<text style="margin-left: 20rpx;">{{message.date}}</text>
 					</view>
 					<view class="item-color">
-						<view class="color-title">TA喜欢的颜色:<text style="margin-left: 20rpx;">紫色</text></view>
+						<view class="color-title">TA喜欢的颜色:<text style="margin-left: 20rpx;">{{message.color}}</text></view>
 						<view class="color-right">
 							<image src="/static/right.svg"></image>
 						</view>
 					</view>
 					<view class="item-color">
-						<view class="color-title">TATA喜欢的明星:<text style="margin-left: 20rpx;">王一博</text></view>
+						<view class="color-title">TATA喜欢的明星:<text style="margin-left: 20rpx;">{{message.fan}}</text></view>
 						<view class="color-right">
 							<image src="/static/right.svg"></image>
 						</view>
 					</view>
 					<view class="item-shiwu">
 						<view class="shiwu-left">TA喜欢的食物</view>
-						<view class="shiwu-right">1.蛋黄酥    2.番茄炒蛋    3.麻薯     4.拔丝芋头   5.巧克力味的冰淇淋  </view>
+						<view class="shiwu-right">{{message.like}}  </view>
 					</view>
 				</view>
 			</view>
@@ -34,8 +34,37 @@
 	export default {
 		data() {
 			return {
-				
+				message:{
+					date:"",
+					color:'',
+					fan:'',
+					like:''
+				}
 			};
+		},
+		onLoad() {
+		    this.begin1()
+			
+		},
+		methods:{
+			begin1(){
+				try {
+				    const value = uni.getStorageSync('_id');
+				    if (value) {
+				        console.log(value);
+				    }
+					uniCloud.callFunction({
+						name:"getu",
+						data:{
+							_id:value
+						}
+					}).then((res)=>{
+						this.message=res.result.data["0"].message
+					})
+				} catch (e) {
+				    // error
+				}
+			}
 		}
 	}
 </script>

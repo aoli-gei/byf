@@ -36,6 +36,38 @@
 					content:"确定解除关系吗?再想想吧",
 					success:(res)=>{
 						console.log(res)
+						try {
+						    const value = uni.getStorageSync('_id');
+						    if (value) {
+						        console.log(value);
+						    }
+							uniCloud.callFunction({
+								name:'getu',
+								data:{
+									_id:value
+								}
+							}).then((res)=>{
+								uniCloud.callFunction({
+									name:'delrelation',
+									data:{
+										_id:value,
+										lover_id:res.result.data["0"].lover_id
+									},
+									success(res){
+										uni.showModal({
+											content: "解除绑定成功！",
+											showCancel: false
+										})
+									}
+								})
+							})
+						} catch (e) {
+						    // error
+							uni.showModal({
+								content: "解除绑定失败！",
+								showCancel: false
+							})
+						}
 					}
 				})
 			}
