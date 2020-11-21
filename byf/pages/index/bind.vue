@@ -57,7 +57,12 @@
 								uni.hideLoading()
 								uni.showModal({
 									content: "绑定成功！",
-									showCancel: false
+									showCancel: false,
+									success:(res)=>{
+										uni.redirectTo({
+										    url: '/pages/index/index'
+										});
+									}
 								})
 							})
 						}

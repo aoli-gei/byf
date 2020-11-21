@@ -25,7 +25,7 @@
 					</view>
 				</view>
 			</view>
-			<navigator class="add-tip" url="/pages/index/abouts">+</navigator>
+			<view class="add-tip" url="/pages/index/abouts" @click= jump()>+</view>
 		</view>
 	</view>
 </template>
@@ -64,6 +64,11 @@
 				} catch (e) {
 				    // error
 				}
+			},
+			jump(){
+				uni.redirectTo({
+				    url: '/pages/index/abouts'
+				});
 			}
 		}
 	}
