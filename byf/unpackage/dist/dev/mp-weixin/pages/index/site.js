@@ -190,9 +190,12 @@ var _default =
                     content: "解除绑定成功！",
                     showCancel: false,
                     success: function success(res) {
-                      uni.redirectTo({
-                        url: '/pages/index/index' });
+                      console.log(res);
+                      if (res.confirm == true) {
+                        uni.redirectTo({
+                          url: '/pages/index/index' });
 
+                      }
                     } });
 
 
