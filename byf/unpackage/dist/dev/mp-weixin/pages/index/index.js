@@ -269,6 +269,7 @@ var _default =
         success: function success(res) {
           console.log(res);
           if (res.confirm == true) {
+            uni.setStorageSync('status1', 0);
             uni.clearStorageSync();
             uni.reLaunch({
               url: '/pages/test/test' });

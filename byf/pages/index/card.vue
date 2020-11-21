@@ -41,9 +41,9 @@
 			if(option.data=="isTrue"){
 				this.cardList=[
 					{
-						title:"举高高券",
+						title:"举高搞高券",
 						time:"2020.10.01-2020.11.20",
-						tip:"今天你说啥都对",
+						tip:"今天你说啥都h1111111",
 						isTrue:false,
 						tips:"LOVE"
 					},{
@@ -71,7 +71,7 @@
 					{
 						title:"举高高券",
 						time:"2020.10.01-2020.11.20",
-						tip:"今天你说啥都对",
+						tip:"今天你说啥都对2131",
 						isTrue:true,
 						tips:"LOVE"
 					},{

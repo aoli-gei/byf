@@ -17,8 +17,16 @@
         onLoad() {
             // 执行查看授权选项
             // this.getSettingMes();
+			this.jump()
         },
         methods: {
+			jump(){		//跳过已登录用户登录
+				if(uni.getStorageSync('_id')){
+
+					this.getSettingMes();
+
+				}
+			},
 			store(){
 				try {
 				    uni.setStorageSync('_id', "5fb63caf48eb4300019c1d55");
@@ -187,6 +195,7 @@
 														}
 													})
 												}
+												uni.setStorageSync('status1',1);
 												uni.redirectTo({
 												    url: '/pages/index/index'
 												});
