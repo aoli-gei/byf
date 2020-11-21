@@ -113,6 +113,7 @@
 					if(uni.getStorageSync('pic')){
 						this.avtor.img=uni.getStorageSync('pic')
 					}
+					
 					uniCloud.callFunction({
 						name:"getu",
 						data:{
@@ -134,10 +135,13 @@
 					title:"退出登录",
 					content:"确定退出登录吗?再想想吧",
 					success:(res)=>{
-						uni.clearStorageSync();
-						uni.reLaunch({
-						    url: '/pages/test/test'
-						});
+						console.log(res)
+						if(res.confirm==true){
+							uni.clearStorageSync();
+							uni.reLaunch({
+							    url: '/pages/test/test'
+							});
+						}
 					}
 				});
 			}
