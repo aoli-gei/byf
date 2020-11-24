@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/lian/lian",
+    "pages/index/index",
+    "pages/index/site",
+    "pages/index/bind",
+    "pages/index/about",
+    "pages/index/card",
+    "pages/index/abouts",
+    "pages/diy/diy",
+    "pages/diy/addcrad",
+    "pages/lian/next"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#101010",
+    "selectedColor": "#EA9518",
+    "list": [
+      {
+        "iconPath": "static/lian.png",
+        "text": "恋爱小报",
+        "selectedIconPath": "static/lians.png",
+        "pagePath": "pages/lian/lian"
+      },
+      {
+        "iconPath": "static/ze-bookmar.png",
+        "text": "DIY卷",
+        "selectedIconPath": "static/ze-bookmark.png",
+        "pagePath": "pages/diy/diy"
+      },
+      {
+        "iconPath": "static/mb-user.png",
+        "text": "我的",
+        "selectedIconPath": "static/mb-users.png",
+        "pagePath": "pages/index/index"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap17.json"
+}
