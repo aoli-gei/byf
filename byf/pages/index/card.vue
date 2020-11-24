@@ -56,7 +56,7 @@
 						title:"公举抱券",
 						time:"2020.10.04-2020.11.10",
 						tip:"今天你是说了算",
-						isTrue:true,
+						isTrue:false,
 						tips:"LIKE"
 					},{
 						title:"公举抱券",
@@ -84,7 +84,7 @@
 						title:"公举抱券",
 						time:"2020.10.04-2020.11.10",
 						tip:"今天你是说了算",
-						isTrue:true,
+						isTrue:false,
 						tips:"LIKE"
 					},{
 						title:"公举抱券",

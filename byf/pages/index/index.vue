@@ -120,6 +120,7 @@
 							_id:this.avtor.number
 						}
 					}).then((res)=>{
+						uni.setStorageSync('lover_id',res.result.data["0"].lover_id)
 						this.state=res.result.data["0"].lover_id
 						if(res.result.data["0"].pic){
 							this.avtor.img=res.result.data["0"].pic

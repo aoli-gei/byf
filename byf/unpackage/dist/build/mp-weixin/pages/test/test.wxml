@@ -1,1 +1,0 @@
-<view><button type="primary" open-type="getUserInfo" lang="zh_CN" data-event-opts="{{[['getuserinfo',[['onGotUserInfo',['$event']]]]]}}" bindgetuserinfo="__e">获取用户信息</button><button type="primary" data-event-opts="{{[['tap',[['store',['$event']]]]]}}" bindtap="__e">游客登录</button></view>
