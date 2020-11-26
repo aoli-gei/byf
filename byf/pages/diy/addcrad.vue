@@ -87,38 +87,62 @@
 				this.isSelectImg=false;
 			},
 			submit(){
-				console.log("message: ",this.textDescription)
-				console.log("detail: ",this.textContent)
-				console.log("pic: ",this.selectSrcImg)
-				uniCloud.callFunction({
-					name:'addt',
-					data:{
-						title:this.name,
-						tip:this.textDescription,
-						content:this.textContent,
-						from_id:uni.getStorageSync('_id'),
-						to_id:uni.getStorageSync('lover_id'),
-						src:this.selectSrcImg,
-						starttime:this.StartTime,
-						endtime:this.endTime
-					},
-					success(res){
+				uni.showModal({
+					title:"赠送",
+					content:"确定赠送给TA此券吗?",
+					success:(res)=>{
 						uni.showToast({
-							title:"赠送成功！",
+							title:"赠送中...",
 							icon:"none",
-							success:(res)=>{
-								setTimeout(function(){
-									// uni.redirectTo({
-								 //    url: '/pages/index/about'
-									// });
-									uni.redirectTo({
-									    url: '/pages/diy/diy'
-									});
-								},1000)
-							}
+							mask:true,
+							duration: 2000
 						});
+						console.log("message: ",this.textDescription)
+						console.log("detail: ",this.textContent)
+						console.log("pic: ",this.selectSrcImg)
+						console.log("name: ",this.name)
+						if(this.name==''){
+							uni.showToast({
+								title:"赠送失败，请填写券名称",
+								icon:"none",
+							});
+						}
+						else{
+							uniCloud.callFunction({
+								name:'addt',
+								data:{
+									title:this.name,
+									tip:this.textDescription,
+									content:this.textContent,
+									from_id:uni.getStorageSync('_id'),
+									to_id:uni.getStorageSync('lover_id'),
+									src:this.selectSrcImg,
+									starttime:this.StartTime,
+									endtime:this.endTime
+								},
+								success(res){
+									uni.showToast({
+										title:"赠送成功！",
+										icon:"none",
+										mask:true,
+										success:(res)=>{
+											setTimeout(function(){
+												// uni.redirectTo({
+											 //    url: '/pages/index/about'
+												// });
+												uni.reLaunch({
+												    url: '/pages/diy/diy'
+												});
+											},1000)
+										}
+									});
+								}
+							})
+						}
 					}
-				})
+				});
+				
+				
 			}
 		}
 	}
