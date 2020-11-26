@@ -1,20 +1,18 @@
 <template>
-	<view>
+	<view style="padding-top: 20rpx;">
+		<!-- 卷的列表 -->
 		<view class="card" v-for="(item,index) in cardList" :key="index">
 			<view class="card-item">
-				<view class="item-left">
+				<view class="item-left" v-if="!item.isBack">
 					<view class="left-title">{{item.title}}</view>
-					<view class="left-icon">
-						<image mode="aspectFill" src="/static/mb-rotate.svg"></image>
-					</view>
 				</view>
-				<view class="item-center">
+				<view class="item-center"  v-if="!item.isBack">
 					<view class="center-img">
-						<image mode="aspectFill" src="/static/img.png"></image>
+						<image mode="aspectFill" :src="item.src"></image>
 					</view>
 					<view class="center-title">有效期:<text style="margin-left: 10rpx;">{{item.time}}</text></view>
 				</view>
-				<view class="item-right">
+				<view class="item-right"  v-if="!item.isBack">
 					<view class="right-top">{{item.tip}}</view>
 					<view class="item-footer" :class="item.isTrue?'select':'selects'">{{item.isTrue?"已使用":"未使用"}}</view>
 				</view>
@@ -22,8 +20,14 @@
 					<image mode="aspectFill" src="/static/love.png"></image>
 					<view class="posone-title">{{item.tips}}</view>
 				</view>
-				<view class="item-postwo">
+				<view class="item-postwo"  v-if="!item.isBack">
 					<image mode="aspectFill" src="/static/juan.png"></image>
+				</view>
+				<view class="item-icon" @click="clickBack(index)">
+					<image mode="aspectFill" src="/static/mb-rotate.svg"></image>
+				</view>
+				<view class="item-content"  v-if="item.isBack">
+					{{item.content}}
 				</view>
 			</view>
 		</view>
@@ -41,29 +45,41 @@
 			if(option.data=="isTrue"){
 				this.cardList=[
 					{
-						title:"举高搞高券",
+						title:"举高高券",
 						time:"2020.10.01-2020.11.20",
-						tip:"今天你说啥都h1111111",
-						isTrue:false,
-						tips:"LOVE"
+						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fdca7b60-2c0b-11eb-899d-733ae62bed2f.gif",
+						tip:"今天你说啥都对",
+						isTrue:false, //是否使用
+						tips:"LOVE",
+						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+						isBack:false,//是否显示背面
 					},{
 						title:"公举抱券",
 						time:"2020.10.04-2020.11.10",
+						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/ffd629e0-2c0b-11eb-899d-733ae62bed2f.gif",
 						tip:"今天你是老大",
 						isTrue:true,
-						tips:"LIKE"
+						tips:"LIKE",
+						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+						isBack:false,//是否显示背面
 					},{
 						title:"公举抱券",
 						time:"2020.10.04-2020.11.10",
+						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/027b3230-2c0c-11eb-8a36-ebb87efcf8c0.gif",
 						tip:"今天你是说了算",
 						isTrue:true,
-						tips:"LIKE"
+						tips:"LIKE",
+						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+						isBack:false,//是否显示背面
 					},{
 						title:"公举抱券",
 						time:"2020.10.04-2020.11.10",
+						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f571cb30-2c0b-11eb-bd01-97bc1429a9ff.gif",
 						tip:"想你了",
 						isTrue:false,
-						tips:"LIKE"
+						tips:"LIKE",
+						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+						isBack:false,//是否显示背面
 					}
 				]
 			}else{
@@ -71,37 +87,54 @@
 					{
 						title:"举高高券",
 						time:"2020.10.01-2020.11.20",
-						tip:"今天你说啥都对2131",
+						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f62340e0-2c0b-11eb-899d-733ae62bed2f.jpg",
+						tip:"今天你说啥都对",
 						isTrue:true,
-						tips:"LOVE"
+						tips:"LOVE",
+						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+						isBack:false,//是否显示背面
 					},{
 						title:"公举抱券",
 						time:"2020.10.04-2020.11.10",
+						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f571cb30-2c0b-11eb-bd01-97bc1429a9ff.gif",
 						tip:"今天你是老大",
 						isTrue:true,
-						tips:"LIKE"
+						tips:"LIKE",
+						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+						isBack:false,//是否显示背面
 					},{
 						title:"公举抱券",
 						time:"2020.10.04-2020.11.10",
+						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f7928850-2c0b-11eb-899d-733ae62bed2f.jpg",
 						tip:"今天你是说了算",
 						isTrue:true,
-						tips:"LIKE"
+						tips:"LIKE",
+						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+						isBack:false,//是否显示背面  false 不显示   true显示
 					},{
 						title:"公举抱券",
 						time:"2020.10.04-2020.11.10",
+						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f6eece40-2c0b-11eb-899d-733ae62bed2f.jpg",
 						tip:"想你了",
 						isTrue:true,
-						tips:"LIKE"
+						tips:"LIKE",
+						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+						isBack:false,//是否显示背面
 					}
 				]
+			}
+		},
+		methods:{
+			clickBack(index){
+				this.cardList[index].isBack=!this.cardList[index].isBack
 			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	page{
-		background-color: #EEE5E0;
+		background-color: #f0e5e0;
 	}
 	.card{
 		width: 100vw;
@@ -109,7 +142,6 @@
 		justify-content: center;
 		align-items: center;
 		.card-item{
-			margin-top: 20rpx;
 			width: 750rpx;
 			height: 450rpx;
 			background-image:url('/static/Copy.png');
@@ -119,29 +151,20 @@
 			display: flex;
 			align-items: center;
 			.item-left{
-				margin-left: 40rpx;
+				margin-left: 53rpx;
 				.left-title{
-					margin-top: 70rpx;
-					margin-bottom: 44rpx;
 					font-size: 36rpx;
 					color: #101010;
 					font-family: PingFangSC-regular;
 					width: 36rpx;
+					height: 300rpx;
 					line-height: 56rpx;
-					margin-left: 16rpx;
-				}
-				.left-icon{
-					width: 60rpx;
-					height: 60rpx;
-					image{
-						width: 100%;
-						height: 100%;
-					}
+					margin-right: 16rpx;
 				}
 			}
 			.item-center{
 				margin-left: 20rpx;
-				margin-right: 62rpx;
+				margin-right: 52rpx;
 				.center-img{
 					width: 380rpx;
 					height: 286rpx;
@@ -172,7 +195,6 @@
 					padding: 20rpx;
 					color: #888888;
 					font-family: Microsoft Yahei;
-					border: 2rpx solid #C0C0C0;
 					border-radius: 10rpx;
 					margin-bottom: 20rpx;
 				}
@@ -197,7 +219,7 @@
 			}
 			.item-posone{
 				position: absolute;
-				top: 0rpx;
+				top: 17rpx;
 				right: 150rpx;
 				width: 140rpx;
 				height: 152rpx;
@@ -213,6 +235,8 @@
 					font-size: 24rpx;
 					color: #EA9518;
 					font-family: SFUIText-regular;
+					transform: rotate(-18deg);
+					letter-spacing: 4rpx;
 				}
 			}
 			.item-postwo{
@@ -225,6 +249,35 @@
 					width: 112rpx;
 					height: 124rpx;
 				}
+			}
+			.item-icon{
+				position: absolute;
+				bottom: 64rpx;
+				left: 44rpx;
+				width: 50rpx;
+				height: 50rpx;
+				image{
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.item-content{
+				box-sizing:border-box;
+				padding: 20rpx;
+				width: 380rpx;
+				height: 286rpx;
+				position: absolute;
+				top: 62rpx;
+				left: 127rpx;
+				font-size: 32rpx;
+				line-height: 45rpx;
+				text-indent: 2em;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				display: -webkit-box; 
+				-webkit-box-orient: vertical; 
+				-webkit-line-clamp: 6; 
+				overflow: hidden; 
 			}
 		}
 	}
