@@ -5,7 +5,7 @@
 			<view class="header">
 				<view class="header-title">啊界面微信</view>
 				<view class="header-tip">
-					<navigator class="tip-title" url="/pages/index/index">开溜</navigator>
+					<navigator class="tip-title" url="/pages/index/index" open-type="switchTab">开溜</navigator>
 				</view>
 			</view>
 			<!-- 尾部 -->
@@ -36,47 +36,6 @@
 					content:"确定解除关系吗?再想想吧",
 					success:(res)=>{
 						console.log(res)
-						try {
-						    const value = uni.getStorageSync('_id');
-						    if (value) {
-						        console.log(value);
-						    }
-							uniCloud.callFunction({
-								name:'getu',
-								data:{
-									_id:value
-								}
-							}).then((res)=>{
-								uniCloud.callFunction({
-									name:'delrelation',
-									data:{
-										_id:value,
-										lover_id:res.result.data["0"].lover_id
-									},
-									success(res){
-										uni.showModal({
-											content: "解除绑定成功！",
-											showCancel: false,
-											success:(res)=>{
-												console.log(res)
-												if(res.confirm==true){
-													uni.redirectTo({
-													    url: '/pages/index/index'
-													});
-												}
-											}
-										})
-										
-									}
-								})
-							})
-						} catch (e) {
-						    // error
-							uni.showModal({
-								content: "解除绑定失败！",
-								showCancel: false
-							})
-						}
 					}
 				})
 			}
@@ -84,13 +43,15 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-	.content{
-		height: 100vh;
-		width: 100vw;
+<style lang="scss" >
+	page{
 		background-image:url('http://47.114.75.140/doc/message/image/18b8b543-9ad7-11e8-aebe-1368d4ec24eb/1605771188509.jpg');
 		background-repeat: no-repeat;
 		background-size:100% 100%;
+	}
+	.content{
+		height: 100vh;
+		width: 100vw;
 		.header{
 			width: 100vw;
 			height: 40vh;
@@ -102,7 +63,7 @@
 				font-size: 72rpx;
 				color: #666666;
 				font-family: PingFangSC-regular;
-				padding-top: 200rpx;
+				padding-top: 100rpx;
 			}
 			.header-tip{
 				width: 100vw;

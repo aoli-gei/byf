@@ -104,7 +104,7 @@
 			// 	}
 			// ]
 			this.begin1()
-		},
+    },
 		methods:{
 			clickBack(index){
 				this.cardList[index].isBack=!this.cardList[index].isBack
