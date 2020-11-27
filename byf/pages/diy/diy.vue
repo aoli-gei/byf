@@ -1,6 +1,28 @@
 <template>
 	<view style="padding-top: 20rpx;">
-		<!-- 卷的列表 -->
+		<!-- 添加 -->
+		<view class="card">
+			<view class="card-item">
+				<view class="item-add">
+					<navigator class="add-img" url="/pages/diy/addcrad">
+						<image mode="aspectFill" src="/static/add.png"></image>
+					</navigator>
+					<view class="add-title">给心爱的TA定制一张专属的券吧~</view>
+				</view>
+				<view class="item-right">
+					<view class="right-top"></view>
+					<view class="item-footer selects" >赠送</view>
+				</view>
+				<view class="item-posone">
+					<image mode="aspectFill" src="/static/love.png"></image>
+					<view class="posone-title">Love</view>
+				</view>
+				<view class="item-postwo"  >
+					<image mode="aspectFill" src="/static/juan.png"></image>
+				</view>
+			</view>
+		</view>
+		<!-- 列表 -->
 		<view class="card" v-for="(item,index) in cardList" :key="index">
 			<view class="card-item">
 				<view class="item-left" v-if="!item.isBack">
@@ -14,7 +36,7 @@
 				</view>
 				<view class="item-right"  v-if="!item.isBack">
 					<view class="right-top">{{item.tip}}</view>
-					<view class="item-footer" :class="item.isTrue?'select':'selects'">{{item.isTrue?"已使用":"未使用"}}</view>
+					<view class="item-footer selects">赠送</view>
 				</view>
 				<view class="item-posone">
 					<image mode="aspectFill" src="/static/love.png"></image>
@@ -41,88 +63,46 @@
 				cardList:[],
 			};
 		},
-		onLoad(option) {
-			if(option.data=="isTrue"){
-				this.cardList=[
-					{
-						title:"举高高券",
-						time:"2020.10.01-2020.11.20",
-						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fdca7b60-2c0b-11eb-899d-733ae62bed2f.gif",
-						tip:"今天你说啥都对",
-						isTrue:false, //是否使用
-						tips:"LOVE",
-						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
-						isBack:false,//是否显示背面
-					},{
-						title:"公举抱券",
-						time:"2020.10.04-2020.11.10",
-						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/ffd629e0-2c0b-11eb-899d-733ae62bed2f.gif",
-						tip:"今天你是老大",
-						isTrue:true,
-						tips:"LIKE",
-						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
-						isBack:false,//是否显示背面
-					},{
-						title:"公举抱券",
-						time:"2020.10.04-2020.11.10",
-						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/027b3230-2c0c-11eb-8a36-ebb87efcf8c0.gif",
-						tip:"今天你是说了算",
-						isTrue:true,
-						tips:"LIKE",
-						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
-						isBack:false,//是否显示背面
-					},{
-						title:"公举抱券",
-						time:"2020.10.04-2020.11.10",
-						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f571cb30-2c0b-11eb-bd01-97bc1429a9ff.gif",
-						tip:"想你了",
-						isTrue:false,
-						tips:"LIKE",
-						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
-						isBack:false,//是否显示背面
-					}
-				]
-			}else{
-				this.cardList=[
-					{
-						title:"举高高券",
-						time:"2020.10.01-2020.11.20",
-						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f62340e0-2c0b-11eb-899d-733ae62bed2f.jpg",
-						tip:"今天你说啥都对",
-						isTrue:true,
-						tips:"LOVE",
-						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
-						isBack:false,//是否显示背面
-					},{
-						title:"公举抱券",
-						time:"2020.10.04-2020.11.10",
-						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f571cb30-2c0b-11eb-bd01-97bc1429a9ff.gif",
-						tip:"今天你是老大",
-						isTrue:true,
-						tips:"LIKE",
-						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
-						isBack:false,//是否显示背面
-					},{
-						title:"公举抱券",
-						time:"2020.10.04-2020.11.10",
-						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f7928850-2c0b-11eb-899d-733ae62bed2f.jpg",
-						tip:"今天你是说了算",
-						isTrue:true,
-						tips:"LIKE",
-						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
-						isBack:false,//是否显示背面  false 不显示   true显示
-					},{
-						title:"公举抱券",
-						time:"2020.10.04-2020.11.10",
-						src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f6eece40-2c0b-11eb-899d-733ae62bed2f.jpg",
-						tip:"想你了",
-						isTrue:true,
-						tips:"LIKE",
-						content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
-						isBack:false,//是否显示背面
-					}
-				]
-			}
+		onLoad() {
+			this.cardList=[
+				{
+					title:"举高高券",
+					src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f87bafd0-2c0b-11eb-b997-9918a5dda011.jpg",
+					time:"2020.10.01-2020.11.20",
+					tip:"今天你说啥都对",
+					isTrue:false, //是否使用
+					tips:"LOVE",
+					content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+					isBack:false,//是否显示背面
+				},{
+					title:"公举抱券",
+					src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fc779590-2c0b-11eb-899d-733ae62bed2f.gif",
+					time:"2020.10.04-2020.11.10",
+					tip:"今天你是老大",
+					isTrue:true,
+					tips:"LIKE",
+					content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+					isBack:false,//是否显示背面
+				},{
+					title:"公举抱券",
+					src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fd2d7810-2c0b-11eb-97b7-0dc4655d6e68.gif",
+					time:"2020.10.04-2020.11.10",
+					tip:"今天你是说了算",
+					isTrue:true,
+					tips:"LIKE",
+					content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+					isBack:false,//是否显示背面
+				},{
+					title:"公举抱券",
+					src:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fa7fbd30-2c0b-11eb-97b7-0dc4655d6e68.jpg",
+					time:"2020.10.04-2020.11.10",
+					tip:"想你了",
+					isTrue:false,
+					tips:"LIKE",
+					content:"我的房间梵蒂冈丰东股份打算考教辅的讽德诵功风光大嫁个饭点击覆盖电视剧发",//背面的内容
+					isBack:false,//是否显示背面
+				}
+			]
 		},
 		methods:{
 			clickBack(index){
@@ -278,6 +258,28 @@
 				-webkit-box-orient: vertical; 
 				-webkit-line-clamp: 6; 
 				overflow: hidden; 
+			}
+			.item-add{
+				margin-left: 50rpx;
+				margin-right: 30rpx;
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+				width: 486rpx;
+				.add-img{
+					width: 150rpx;
+					height: 150rpx;
+					image{
+						width: 100%;
+						height: 100%;
+					}
+				}
+				.add-title{
+					font-size: 32rpx;
+					color: #EA9518;
+					font-family: 方正准圆-undefined;
+					margin-top: 40rpx;
+				}
 			}
 		}
 	}

@@ -1,0 +1,35 @@
+const data= [
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f87bafd0-2c0b-11eb-b997-9918a5dda011.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f92ed330-2c0b-11eb-8a36-ebb87efcf8c0.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f9daa390-2c0b-11eb-899d-733ae62bed2f.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fa7fbd30-2c0b-11eb-97b7-0dc4655d6e68.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fb2b1860-2c0b-11eb-8a36-ebb87efcf8c0.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fbd14370-2c0b-11eb-97b7-0dc4655d6e68.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fc779590-2c0b-11eb-899d-733ae62bed2f.gif',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fd2d7810-2c0b-11eb-97b7-0dc4655d6e68.gif',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fdca7b60-2c0b-11eb-899d-733ae62bed2f.gif',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/fe8259b0-2c0b-11eb-880a-0db19f4f74bb.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/ff28f9f0-2c0b-11eb-899d-733ae62bed2f.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/ffd629e0-2c0b-11eb-899d-733ae62bed2f.gif',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/009cae30-2c0c-11eb-bd01-97bc1429a9ff.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/d355bdd0-2c11-11eb-8ff1-d5dcf8779628.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/013bd460-2c0c-11eb-bd01-97bc1429a9ff.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/01d1abc0-2c0c-11eb-b680-7980c8a877b8.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/027b3230-2c0c-11eb-8a36-ebb87efcf8c0.gif',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/0330eda0-2c0c-11eb-b680-7980c8a877b8.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/03d2fa00-2c0c-11eb-8a36-ebb87efcf8c0.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/d4016720-2c11-11eb-8a36-ebb87efcf8c0.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/0481feb0-2c0c-11eb-899d-733ae62bed2f.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/052bfa50-2c0c-11eb-b680-7980c8a877b8.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/05f516b0-2c0c-11eb-b680-7980c8a877b8.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/06898e80-2c0c-11eb-8a36-ebb87efcf8c0.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/07281870-2c0c-11eb-8a36-ebb87efcf8c0.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f49d1610-2c0b-11eb-8ff1-d5dcf8779628.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f571cb30-2c0b-11eb-bd01-97bc1429a9ff.gif',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f62340e0-2c0b-11eb-899d-733ae62bed2f.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f6eece40-2c0b-11eb-899d-733ae62bed2f.jpg',
+	'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/f7928850-2c0b-11eb-899d-733ae62bed2f.jpg'
+]
+
+
+export default data
