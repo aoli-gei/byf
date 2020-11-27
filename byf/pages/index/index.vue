@@ -63,7 +63,85 @@
 
 		},
 		methods: {
-
+			paste() {
+				
+				uni.setClipboardData({
+					data: this.avtor.number
+				});
+				uni.showToast({
+					title:"复制成功！",
+					icon:"none"
+				});
+			},
+			test(title,url1){
+				if(this.state==''){
+					if(title=="关系绑定"){
+						uni.navigateTo({
+						    url: url1
+						});
+					}
+					else {
+						uni.showModal({
+							content: "请先绑定关系",
+							showCancel: false
+						});
+					}
+				}
+				else {
+					if(title!="关系绑定"){
+						uni.navigateTo({
+						    url: url1
+						});
+					}
+					else {
+						uni.showModal({
+							content: "你已绑定了关系",
+							showCancel: false
+						});
+					}
+				}
+			},
+			begin1(){
+				try {
+				    this.avtor.number = uni.getStorageSync('_id');
+					this.avtor.title=uni.getStorageSync('username')
+					if(uni.getStorageSync('pic')){
+						this.avtor.img=uni.getStorageSync('pic')
+					}
+					
+					uniCloud.callFunction({
+						name:"getu",
+						data:{
+							_id:this.avtor.number
+						}
+					}).then((res)=>{
+						uni.setStorageSync('lover_id',res.result.data["0"].lover_id)
+						this.state=res.result.data["0"].lover_id
+						if(res.result.data["0"].pic){
+							this.avtor.img=res.result.data["0"].pic
+						}
+						this.avtor.number=uni.getStorageSync('_id')
+					})
+				} catch (e) {
+				    // error
+				}
+			},
+			out(){
+				uni.showModal({
+					title:"退出登录",
+					content:"确定退出登录吗?再想想吧",
+					success:(res)=>{
+						console.log(res)
+						if(res.confirm==true){
+							uni.setStorageSync('status1',0);
+							uni.clearStorageSync();
+							uni.reLaunch({
+							    url: '/pages/test/test'
+							});
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
