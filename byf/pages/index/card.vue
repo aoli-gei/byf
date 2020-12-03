@@ -2,19 +2,16 @@
 	<view>
 		<!-- <view class="card" v-for="(item,index) in cardList" :key="index">
 			<view class="card-item">
-				<view class="item-left">
+				<view class="item-left" v-if="!item.isBack">
 					<view class="left-title">{{item.title}}</view>
-					<view class="left-icon">
-						<image mode="aspectFill" src="/static/mb-rotate.svg"></image>
-					</view>
 				</view>
-				<view class="item-center">
+				<view class="item-center"  v-if="!item.isBack">
 					<view class="center-img">
-						<image mode="aspectFill" src="/static/img.png"></image>
+						<image mode="aspectFill" :src="item.src"></image>
 					</view>
 					<view class="center-title">有效期:<text style="margin-left: 10rpx;">{{item.time}}</text></view>
 				</view>
-				<view class="item-right">
+				<view class="item-right"  v-if="!item.isBack">
 					<view class="right-top">{{item.tip}}</view>
 					<view class="item-footer" :class="item.isTrue?'select':'selects'">{{item.isTrue?"已使用":"未使用"}}</view>
 				</view>
@@ -22,8 +19,14 @@
 					<image mode="aspectFill" src="/static/love.png"></image>
 					<view class="posone-title">{{item.tips}}</view>
 				</view>
-				<view class="item-postwo">
+				<view class="item-postwo"  v-if="!item.isBack">
 					<image mode="aspectFill" src="/static/juan.png"></image>
+				</view>
+				<view class="item-icon" @click="clickBack(index)">
+					<image mode="aspectFill" src="/static/mb-rotate.svg"></image>
+				</view>
+				<view class="item-content"  v-if="item.isBack">
+					{{item.content}}
 				</view>
 			</view>
 		</view> -->
@@ -247,6 +250,11 @@
 					});
 					
 				}
+			}
+		},
+		methods:{
+			clickBack(index){
+				this.cardList[index].isBack=!this.cardList[index].isBack
 			}
 		}
 	}
