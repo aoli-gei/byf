@@ -4,9 +4,9 @@
 		<view class="card" @click="jump">
 			<view class="card-item">
 				<view class="item-add">
-					<navigator class="add-img" url="/pages/diy/addcrad">
+					<view class="add-img" >
 						<image mode="aspectFill" src="/static/add.png"></image>
-					</navigator>
+					</view>
 					<view class="add-title">给心爱的TA定制一张专属的券吧~</view>
 				</view>
 				<view class="item-right">
@@ -32,11 +32,12 @@
 					<view class="center-img">
 						<image mode="aspectFill" :src="item.src"></image>
 					</view>
-					<view class="center-title">有效期:<text style="margin-left: 10rpx;">{{item.time}}</text></view>
+					<view class="center-title">{{item.tips}}券日期:<text style="margin-left: 10rpx;">{{item.time}}</text></view>
 				</view>
 				<view class="item-right"  v-if="!item.isBack">
 					<view class="right-top">{{item.tip}}</view>
-					<view class="item-footer selects">赠送</view>
+					<!-- <view class="item-footer selects">使用</view> -->
+					<view class="item-footer" :class="item.isTrue?'select':'selects'" @click="using(item.isTrue,item._id,item.from_id)">{{item.isTrue?"已使用":"使用"}}</view>
 				</view>
 				<view class="item-posone">
 					<image mode="aspectFill" src="/static/love.png"></image>
@@ -51,6 +52,10 @@
 				<view class="item-content"  v-if="item.isBack">
 					{{item.content}}
 				</view>
+				<!-- <view class="item-right"  v-if="item.isBack">
+					<view class="item-footer selects">删除</view>
+				</view> -->
+				<!-- <view class="item-footer selects">使用</view> -->
 			</view>
 		</view>
 	</view>
@@ -62,6 +67,11 @@
 			return {
 				cardList:[],
 			};
+		},
+		onPullDownRefresh(){
+			uni.reLaunch({
+				url:'/pages/diy/diy'
+			})
 		},
 		onLoad() {
 			// this.cardList=[
@@ -110,9 +120,17 @@
 				this.cardList[index].isBack=!this.cardList[index].isBack
 			},
 			jump(){
-				uni.navigateTo({
-				    url: '/pages/diy/addcrad'
-				});
+				if(uni.getStorageSync('lover_id')){
+					uni.navigateTo({
+					    url: '/pages/diy/addcrad'
+					});
+				}
+				else {
+					uni.showModal({
+						content: "请先绑定关系",
+						showCancel: false
+					})
+				}
 			},
 			begin1(){
 				var cardList=[]
@@ -143,8 +161,12 @@
 						for(i in res.result.data){
 							console.log("当前元素：",res.result.data[i])
 							if(res.result.data[i].from_id==uni.getStorageSync('_id')){
-								res.result.data[i].tips="LIKE"
+								res.result.data[i].tips="送出"
 							}
+							else{
+								res.result.data[i].tips="收到"
+							}
+							res.result.data[i].time=this.happenTimeFun(res.result.data[0].create_time)
 							res.result.data[i].isBack=false
 							cardList.push(res.result.data[i])
 						}
@@ -152,6 +174,67 @@
 					}
 				})
 				this.cardList=cardList
+			},
+			happenTimeFun(num){//时间戳数据处理
+				 //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				 // let date=Date.now()
+				 let date = new Date(num)
+				 console.log('1233: ',date)
+				 console.log('123: ',Date.now())
+				 let y = date.getFullYear();
+				 let MM = date.getMonth() + 1;
+				 MM = MM < 10 ? ('0' + MM) : MM;//月补0
+				 let d = date.getDate();
+				 d = d < 10 ? ('0' + d) : d;//天补0
+				 let h = date.getHours();
+				 h = h < 10 ? ('0' + h) : h;//小时补0
+				 let m = date.getMinutes();
+				 m = m < 10 ? ('0' + m) : m;//分钟补0
+				 let s = date.getSeconds();
+				 s = s < 10 ? ('0' + s) : s;//秒补0
+				 console.log('现在时间为：',y + '-' + MM + '-' + d)
+				 return y + '-' + MM + '-' + d; //年月日
+				 //return y + '-' + MM + '-' + d + ' ' + h + ':' + m+ ':' + s; //年月日时分秒
+			 },
+			using(y,id,fid){
+				if(y){
+					uni.showToast({
+						title:"券已经用过啦！",
+						icon:"none"
+					});
+				}
+				else if(fid==uni.getStorageSync('_id')){
+					uni.showToast({
+						title:"不能用自己送的券哦！",
+						icon:"none"
+					});
+				}
+				else{
+					uni.showModal({
+						title:"使用",
+						content:"确定使用吗?再想想吧",
+						success:(res)=>{
+							console.log(res)
+							uniCloud.callFunction({
+								name:'updt',
+								data:{
+									_id:id
+								},
+								success(res) {
+									setTimeout(function(){
+										// uni.redirectTo({
+									 //    url: '/pages/index/about'
+										// });
+										uni.reLaunch({
+										    url: '/pages/diy/diy'
+										});
+									},500)
+								}
+							})
+						}
+					});
+					
+				}
 			}
 		}
 	}
