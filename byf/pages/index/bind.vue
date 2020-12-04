@@ -40,13 +40,13 @@
 						this.number=res.result.affectedDocs
 						console.log('人数：',this.number,res.result.data["0"].lover_id)
 						if(this.number>0&&value!=this.inviteCode&&res.result.data['0'].lover_id==''){
-							uniCloud.callFunction({
-								name:'updateu',
-								data:{
-									_id:value,
-									lover_id:this.inviteCode
-								}
-							})
+							// uniCloud.callFunction({
+							// 	name:'updateu',
+							// 	data:{
+							// 		_id:value,
+							// 		lover_id:this.inviteCode
+							// 	}
+							// })
 							uniCloud.callFunction({
 								name:'updateu',
 								data:{
@@ -59,7 +59,7 @@
 									content: "绑定成功！",
 									showCancel: false,
 									success:(res)=>{
-										uni.redirectTo({
+										uni.reLaunch({
 										    url: '/pages/index/index'
 										});
 									}
@@ -135,6 +135,7 @@
 					font-size: 32rpx;
 					border-radius: 4rpx;
 					border: 2rpx solid #BBBBBB;
+					border-radius: 30rpx;
 				}
 			}
 		}

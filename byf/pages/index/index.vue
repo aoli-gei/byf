@@ -45,23 +45,28 @@
 				},
 				navgatList:[
 					{
-						title:"收到的卷",
+						title:"收到的券",
 						url:"/pages/index/card?data=isTrue",
 					},{
-						title:"送出的卷",
+						title:"送出的券",
 						url:"/pages/index/card?data=isFalse",
 					},{
 						title:"关于 TA",
 						url:"/pages/index/about",
 					},{
 						title:"解除关系",
-						url:"/pages/index/site",
+						url:"/pages/index/site2",
 					},{
 						title:"关系绑定",
 						url:"/pages/index/bind",
 					}
 				]
 			}
+		},
+		onPullDownRefresh(){
+			uni.reLaunch({
+				url:'/pages/index/index'
+			})
 		},
 		onLoad() {
 			this.begin1();
@@ -141,7 +146,7 @@
 							uni.setStorageSync('status1',0);
 							uni.clearStorageSync();
 							uni.reLaunch({
-							    url: '/pages/test/test'
+							    url: '/pages/test/login'
 							});
 						}
 					}
@@ -165,7 +170,10 @@
 			padding:0 30rpx;
 			padding-top: 30rpx;
 			.avtor-img{
-				margin-left: 30rpx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				// margin-left: 30rpx;
 				width: 240rpx;
 				height: 240rpx;
 				border-radius: 50%;

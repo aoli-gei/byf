@@ -1,0 +1,1 @@
+<view><block wx:if="{{nextDate=='one'}}"><view class="content-time"><view class="time-title"><view class="title-yiqi">已在一起</view><view class="title-date"><text>{{day}}</text><text style="margin-left:10rpx;">天</text></view></view></view></block></view>

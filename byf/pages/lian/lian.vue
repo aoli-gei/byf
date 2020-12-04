@@ -8,7 +8,7 @@
 		</view>
 		<view class="footer">
 			<view class="footer-tip">所谓世间，不就是你吗</view>
-			<navigator class="footer-title" url="/pages/lian/next">进入</navigator>
+			<view class="footer-title" @click="jump" >进入</view>
 		</view>
 	</view>
 </template>
@@ -19,6 +19,26 @@
 			return {
 				
 			};
+		},
+		methods:{
+			jump(){
+				if(uni.getStorageSync('lover_id')){
+					uni.navigateTo({
+					    url: '/pages/lian/next'
+					});
+				}
+				else {
+					uni.showModal({
+						content: "请先绑定关系",
+						showCancel: false,
+						success:(res)=>{
+							uni.redirectTo({
+							    url: '/pages/index/index'
+							});
+						}
+					})
+				}
+			}
 		}
 	}
 </script>

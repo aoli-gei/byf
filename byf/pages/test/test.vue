@@ -30,7 +30,7 @@
 			store(){
 				try {
 				    uni.setStorageSync('_id', "5fb63caf48eb4300019c1d55");
-					uni.setStorageSync('username', "hee");
+					uni.setStorageSync('username', "游客");
 					console.log("success");
 					uni.reLaunch({
 					    url: '/pages/index/index'

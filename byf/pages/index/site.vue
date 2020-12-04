@@ -1,9 +1,10 @@
 <template>
 	<view>
 		<view class="content">
+			
 			<!-- 头部 -->
 			<view class="header">
-				<view class="header-title">啊界面微信</view>
+				<view class="header-title">啊界面危险</view>
 				<view class="header-tip">
 					<navigator class="tip-title" url="/pages/index/index">开溜</navigator>
 				</view>
@@ -54,13 +55,19 @@
 										lover_id:res.result.data["0"].lover_id
 									},
 									success(res){
+										uniCloud.callFunction({
+											name:'delt',
+											data:{
+												_id:value
+											}
+										})
 										uni.showModal({
 											content: "解除绑定成功！",
 											showCancel: false,
 											success:(res)=>{
 												console.log(res)
 												if(res.confirm==true){
-													uni.redirectTo({
+													uni.reLaunch({
 													    url: '/pages/index/index'
 													});
 												}

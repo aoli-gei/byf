@@ -16,7 +16,7 @@
 						<input placeholder="请输入喜欢的颜色"  v-model="message.color"/>
 					</view>
 					<view class="item-color">
-						<view class="color-title">TATA喜欢的明星:</view>
+						<view class="color-title">TA喜欢的明星:</view>
 						<input placeholder="请输入喜欢的明星"  v-model="message.fan"/>
 					</view>
 					<view class="item-shiwu">
