@@ -1,0 +1,278 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.content-one {
+  background-image: url("http://47.114.75.140/doc/message/image/18b8b543-9ad7-11e8-aebe-1368d4ec24eb/1606023527242.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.content-one .one-title {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100vw;
+  height: 50vh;
+  padding: 40rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+          align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+}
+.content-one .one-title view {
+  width: 475rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  font-size: 36rpx;
+  color: #FCF9F9;
+  font-family: PingFangSC-regular;
+  line-height: 80rpx;
+}
+.one-next {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 48rpx solid transparent;
+  border-right: 48rpx solid transparent;
+  border-top: 90rpx solid #102CAC;
+}
+.content-two {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-image: url("http://47.114.75.140/doc/message/image/18b8b543-9ad7-11e8-aebe-1368d4ec24eb/1606025115583.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.content-two .two-title {
+  width: 100vw;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  color: #f8f7f7;
+  font-family: PingFangSC-regular;
+  font-size: 36rpx;
+}
+.content-two .two-title .title:nth-child(1) {
+  margin-top: 68rpx;
+  width: 400rpx;
+  line-height: 60rpx;
+}
+.content-two .two-title .title:nth-child(2) {
+  margin-top: 68rpx;
+  width: 400rpx;
+  line-height: 60rpx;
+}
+.content-two .two-title .title:nth-child(3) {
+  margin-top: 50rpx;
+  width: 600rpx;
+  line-height: 60rpx;
+  text-indent: 2em;
+}
+.content-three {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-image: url("http://47.114.75.140/doc/message/image/18b8b543-9ad7-11e8-aebe-1368d4ec24eb/1606036456562.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.content-three .three-title {
+  width: 100vw;
+}
+.content-three .three-title .title-img {
+  height: 23vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+  padding: 30rpx;
+  padding-bottom: 0;
+}
+.content-three .three-title .title-img view {
+  width: 536rpx;
+  height: 360rpx;
+  -webkit-border-radius: 10rpx;
+          border-radius: 10rpx;
+  overflow: hidden;
+}
+.content-three .three-title .title-img view image {
+  width: 100%;
+  height: 100%;
+}
+.content-three .three-title .title-footer {
+  height: 73vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  color: #FCFCFC;
+  font-family: 方正准圆-undefined;
+}
+.content-three .three-title .title-footer .title-left {
+  margin-left: 20rpx;
+  font-size: 36rpx;
+  height: 73vh;
+}
+.content-three .three-title .title-footer .footer-right {
+  font-size: 36rpx;
+  margin-left: 20rpx;
+}
+.content-four {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-image: url("http://47.114.75.140/doc/message/image/18b8b543-9ad7-11e8-aebe-1368d4ec24eb/1606037992917.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+}
+.content-four .four-title {
+  width: 330rpx;
+  font-size: 50rpx;
+  color: #f8f7f7;
+  margin-top: 56rpx;
+}
+.content-four .four-title view {
+  line-height: 100rpx;
+}
+.content-four .four-next {
+  position: absolute;
+  bottom: 100rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: #f8f7f7;
+  font-size: 50rpx;
+}
+.content-time {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-image: url("https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-svbclng3di3bbd5e41/02e0ec90-3546-11eb-899d-733ae62bed2f.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.content-time .time-title {
+  height: 470rpx;
+  width: 100vw;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-family: PingFangSC-regular;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  color: #101010;
+}
+.content-time .time-title .title-yiqi {
+  font-size: 50rpx;
+  margin-top: 20rpx;
+  line-height: 90rpx;
+}
+.content-time .time-title .title-date {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.content-time .time-title .title-date text:nth-child(1) {
+  font-size: 172rpx;
+}
+.content-time .time-title .title-date text:nth-child(2) {
+  font-size: 36rpx;
+}
+.content-time .time-title .title-brt {
+  font-size: 40rpx;
+  letter-spacing: 2rpx;
+}
+

@@ -14,7 +14,7 @@
 						</view>
 					</view>
 					<view class="item-color">
-						<view class="color-title">TATA喜欢的明星:<text style="margin-left: 20rpx;">王一博</text></view>
+						<view class="color-title">TA喜欢的明星:<text style="margin-left: 20rpx;">{{message.fan}}</text></view>
 						<view class="color-right">
 							<image src="/static/right.svg"></image>
 						</view>
@@ -25,7 +25,10 @@
 					</view>
 				</view>
 			</view>
-			<navigator class="add-tip" url="/pages/index/abouts">+</navigator>
+			<view class="add-tip" url="/pages/index/abouts" @click= jump()>修改</view>
+			<view class="submit">
+				<view class="submit-title" @click="jump1">点击查看在一起时间</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -36,6 +39,40 @@
 			return {
 				
 			};
+		},
+		onLoad() {
+		    this.begin1()
+			
+		},
+		methods:{
+			begin1(){
+				try {
+				    const value = uni.getStorageSync('_id');
+				    if (value) {
+				        console.log(value);
+				    }
+					uniCloud.callFunction({
+						name:"getu",
+						data:{
+							_id:value
+						}
+					}).then((res)=>{
+						this.message=res.result.data["0"].message
+					})
+				} catch (e) {
+				    // error
+				}
+			},
+			jump(){
+				uni.redirectTo({
+				    url: '/pages/index/abouts'
+				});
+			},
+			jump1(){
+				uni.navigateTo({
+					url:'/pages/lian/displayday'
+				})
+			}
 		}
 	}
 </script>
@@ -106,8 +143,8 @@
 			
 		}
 		.add-tip{
-			width: 110rpx;
-			height: 110rpx;
+			width: 150rpx;
+			height: 150rpx;
 			background-color: #007AFF;
 			border-radius: 50%;
 			color: #FFFFFF;
@@ -118,7 +155,25 @@
 			justify-content: center;
 			position: fixed;
 			right: 28rpx;
-			bottom: 136rpx;
+			bottom: 256rpx;
+		}
+		.submit{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			.submit-title{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 32rpx;
+				background-color: rgb(254,232,159);
+				color: #75763f;
+				height: 80rpx;
+				width: 340rpx;
+				border-radius: 10rpx;
+				margin-top: 60rpx;
+			}
 		}
 	}
 </style>

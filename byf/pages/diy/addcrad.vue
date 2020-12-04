@@ -8,22 +8,26 @@
 						<view class="time-title">券名称 : </view>
 						<input class="time-start" placeholder="如公主抱券" v-model="name" />
 					</view>
+					<view class="time">
+					</view>
 					<view class="add" @click="isSelectImg=!isSelectImg">
 						<view v-if="!selectSrcImg" class="add-img" >
 							<image mode="aspectFill" src="/static/addimg.svg"></image>
 						</view>
-						<view v-if="!selectSrcImg" class="img-title">上传图片</view>
+						<view v-if="!selectSrcImg" class="img-title">选择图片</view>
 						<image v-if="selectSrcImg" class="add-select" mode="aspectFit" :src="selectSrcImg"></image>
 					</view>
-					<view class="time">
+					<!-- <view class="time">
 						<view class="time-title">有效期:</view>
 						<input class="time-start" placeholder="如2020.11.12" v-model="StartTime" />
 						-
 						<input class="time-start" placeholder="如2020.11.20" v-model="endTime" />
+					</view> -->
+					<view class="time">
 					</view>
 				</view>
 				<view class="item-right">
-					<textarea v-model="textDescription" placeholder="请输入券说明..." class="right-top" />
+					<textarea v-model="textDescription" placeholder="请输入券的使用说明..." class="right-top" />
 					<view class="item-footer selects" @click="submit" >赠送</view>
 				</view>
 				<view class="item-posone">
@@ -45,7 +49,7 @@
 					<image mode="aspectFill" src="/static/love.png"></image>
 					<view class="posone-title">LOVE</view>
 				</view>
-				<textarea placeholder="券的记录..." v-model="textContent" class="item-content" ></textarea>
+				<textarea placeholder="送出此券原因/故事的记录...(对券点击翻面可见)" v-model="textContent" class="item-content" ></textarea>
 			</view>
 		</view>
 		
@@ -91,54 +95,63 @@
 					title:"赠送",
 					content:"确定赠送给TA此券吗?",
 					success:(res)=>{
-						uni.showToast({
-							title:"赠送中...",
-							icon:"none",
-							mask:true,
-							duration: 2000
-						});
-						console.log("message: ",this.textDescription)
-						console.log("detail: ",this.textContent)
-						console.log("pic: ",this.selectSrcImg)
-						console.log("name: ",this.name)
-						if(this.name==''){
+						if(res.confirm==true){
 							uni.showToast({
-								title:"赠送失败，请填写券名称",
+								title:"赠送中...",
 								icon:"none",
+								mask:true,
+								duration: 2000
 							});
+							console.log("message: ",this.textDescription)
+							console.log("detail: ",this.textContent)
+							console.log("pic: ",this.selectSrcImg)
+							console.log("name: ",this.name)
+							if(this.name==''){
+								uni.showToast({
+									title:"赠送失败，填写一下券名称吧",
+									icon:"none",
+								});
+							}
+							else if(this.selectSrcImg==''){
+								uni.showToast({
+									title:"赠送失败，选择一张券的图片吧",
+									icon:"none",
+								});
+							}
+							else{
+								uniCloud.callFunction({
+									name:'addt',
+									data:{
+										title:this.name,
+										tip:this.textDescription,
+										content:this.textContent,
+										from_id:uni.getStorageSync('_id'),
+										to_id:uni.getStorageSync('lover_id'),
+										src:this.selectSrcImg,
+										starttime:this.StartTime,
+										endtime:this.endTime
+									},
+									success(res){
+										uni.showToast({
+											title:"赠送成功！",
+											icon:"none",
+											mask:true,
+											success:(res)=>{
+												setTimeout(function(){
+													// uni.redirectTo({
+												 //    url: '/pages/index/about'
+													// });
+													uni.reLaunch({
+													    url: '/pages/diy/diy'
+													});
+												},1000)
+											}
+										});
+									}
+								})
+							}
 						}
-						else{
-							uniCloud.callFunction({
-								name:'addt',
-								data:{
-									title:this.name,
-									tip:this.textDescription,
-									content:this.textContent,
-									from_id:uni.getStorageSync('_id'),
-									to_id:uni.getStorageSync('lover_id'),
-									src:this.selectSrcImg,
-									starttime:this.StartTime,
-									endtime:this.endTime
-								},
-								success(res){
-									uni.showToast({
-										title:"赠送成功！",
-										icon:"none",
-										mask:true,
-										success:(res)=>{
-											setTimeout(function(){
-												// uni.redirectTo({
-											 //    url: '/pages/index/about'
-												// });
-												uni.reLaunch({
-												    url: '/pages/diy/diy'
-												});
-											},1000)
-										}
-									});
-								}
-							})
-						}
+						
 					}
 				});
 			}

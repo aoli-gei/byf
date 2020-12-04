@@ -1,0 +1,1 @@
+<view><view class="content"><view class="content-title">真好</view><view class="content-title">遇见你</view><view class="content-title">恋爱小报</view><view class="content-title">想跟你借个未来</view></view><view class="footer"><view class="footer-tip">所谓世间，不就是你吗</view><view data-event-opts="{{[['tap',[['jump',['$event']]]]]}}" class="footer-title" bindtap="__e">进入</view></view></view>

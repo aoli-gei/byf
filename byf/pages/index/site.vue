@@ -1,9 +1,10 @@
 <template>
 	<view>
 		<view class="content">
+			
 			<!-- 头部 -->
 			<view class="header">
-				<view class="header-title">啊界面微信</view>
+				<view class="header-title">啊界面危险</view>
 				<view class="header-tip">
 					<navigator class="tip-title" url="/pages/index/index" open-type="switchTab">开溜</navigator>
 				</view>
@@ -36,6 +37,53 @@
 					content:"确定解除关系吗?再想想吧",
 					success:(res)=>{
 						console.log(res)
+						try {
+						    const value = uni.getStorageSync('_id');
+						    if (value) {
+						        console.log(value);
+						    }
+							uniCloud.callFunction({
+								name:'getu',
+								data:{
+									_id:value
+								}
+							}).then((res)=>{
+								uniCloud.callFunction({
+									name:'delrelation',
+									data:{
+										_id:value,
+										lover_id:res.result.data["0"].lover_id
+									},
+									success(res){
+										uniCloud.callFunction({
+											name:'delt',
+											data:{
+												_id:value
+											}
+										})
+										uni.showModal({
+											content: "解除绑定成功！",
+											showCancel: false,
+											success:(res)=>{
+												console.log(res)
+												if(res.confirm==true){
+													uni.reLaunch({
+													    url: '/pages/index/index'
+													});
+												}
+											}
+										})
+										
+									}
+								})
+							})
+						} catch (e) {
+						    // error
+							uni.showModal({
+								content: "解除绑定失败！",
+								showCancel: false
+							})
+						}
 					}
 				})
 			}

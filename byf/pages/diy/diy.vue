@@ -215,22 +215,24 @@
 						content:"确定使用吗?再想想吧",
 						success:(res)=>{
 							console.log(res)
-							uniCloud.callFunction({
-								name:'updt',
-								data:{
-									_id:id
-								},
-								success(res) {
-									setTimeout(function(){
-										// uni.redirectTo({
-									 //    url: '/pages/index/about'
-										// });
-										uni.reLaunch({
-										    url: '/pages/diy/diy'
-										});
-									},500)
-								}
-							})
+							if(res.confirm==true){
+								uniCloud.callFunction({
+									name:'updt',
+									data:{
+										_id:id
+									},
+									success(res) {
+										setTimeout(function(){
+											// uni.redirectTo({
+										 //    url: '/pages/index/about'
+											// });
+											uni.reLaunch({
+											    url: '/pages/diy/diy'
+											});
+										},500)
+									}
+								})
+							}
 						}
 					});
 					

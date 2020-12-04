@@ -21,6 +21,74 @@
 			return {
 				
 			};
+		},
+		methods:{
+			link(){
+				try {
+				    const value = uni.getStorageSync('_id');
+				    if (value) {
+				        console.log(value);
+				    };
+					uniCloud.callFunction({
+						name:'getu',
+						data:{
+							_id:this.inviteCode
+						}
+					}).then((res)=>{
+						console.log(res)
+						this.number=res.result.affectedDocs
+						console.log('人数：',this.number,res.result.data["0"].lover_id)
+						if(this.number>0&&value!=this.inviteCode&&res.result.data['0'].lover_id==''){
+							// uniCloud.callFunction({
+							// 	name:'updateu',
+							// 	data:{
+							// 		_id:value,
+							// 		lover_id:this.inviteCode
+							// 	}
+							// })
+							uniCloud.callFunction({
+								name:'updateu',
+								data:{
+									_id:this.inviteCode,
+									lover_id:value
+								}
+							}).then((res)=>{
+								uni.hideLoading()
+								uni.showModal({
+									content: "绑定成功！",
+									showCancel: false,
+									success:(res)=>{
+										uni.reLaunch({
+										    url: '/pages/index/index'
+										});
+									}
+								})
+							})
+						}
+						else if(this.number==0||value==this.inviteCode){
+							uni.showModal({
+								content: "绑定失败，该邀请码无效",
+								showCancel: false
+							})
+						}
+						else {
+							uni.showModal({
+								content: "绑定失败，此人已绑定了关系",
+								showCancel: false
+							})
+						}
+					}).catch((err)=>{
+						uni.hideLoading()
+						uni.showModal({
+							content: `绑定错误`,
+							showCancel: false
+						})
+						console.error(err)
+					})
+				} catch (e) {
+				    // error
+				}
+			}
 		}
 	}
 </script>
@@ -66,6 +134,7 @@
 					font-size: 32rpx;
 					border-radius: 4rpx;
 					border: 2rpx solid #BBBBBB;
+					border-radius: 30rpx;
 				}
 			}
 		}
