@@ -1,4 +1,3 @@
-
 <template>
 	<view>
 		<view class="content">
@@ -82,7 +81,7 @@
 						flex: 1;
 						margin-left: 20rpx;
 					}
-					
+
 				}
 				.item-shiwu{
 					border-top: 2rpx solid #E5E5E5;
@@ -108,9 +107,10 @@
 					}
 				}
 			}
-			
+
 		}
 		.submit{
+
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -127,6 +127,7 @@
 				border-radius: 10rpx;
 				margin-top: 60rpx;
 			}
+
 		}
 	}
 </style>
