@@ -5,10 +5,10 @@
 			<view class="header">
 				<view class="header-item">
 					<view class="item-birthday">
-						TA的生日:<text style="margin-left: 20rpx;">{{message.date}}</text>
+						TA的生日:<text style="margin-left: 20rpx;">2002年11月3日</text>
 					</view>
 					<view class="item-color">
-						<view class="color-title">TA喜欢的颜色:<text style="margin-left: 20rpx;">{{message.color}}</text></view>
+						<view class="color-title">TA喜欢的颜色:<text style="margin-left: 20rpx;">紫色</text></view>
 						<view class="color-right">
 							<image src="/static/right.svg"></image>
 						</view>
@@ -21,7 +21,7 @@
 					</view>
 					<view class="item-shiwu">
 						<view class="shiwu-left">TA喜欢的食物</view>
-						<view class="shiwu-right">{{message.like}}  </view>
+						<view class="shiwu-right">1.蛋黄酥    2.番茄炒蛋    3.麻薯     4.拔丝芋头   5.巧克力味的冰淇淋  </view>
 					</view>
 				</view>
 			</view>
@@ -37,12 +37,7 @@
 	export default {
 		data() {
 			return {
-				message:{
-					date:"",
-					color:'',
-					fan:'',
-					like:''
-				}
+				
 			};
 		},
 		onLoad() {

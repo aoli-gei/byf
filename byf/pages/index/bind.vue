@@ -4,10 +4,10 @@
 			<view class="header">
 				<view class="header-tip">
 					<view class="tip-title">输入邀请码:</view>
-					<input placeholder="请输入邀请码" v-model="inviteCode" />
+					<input placeholder="请输入邀请码" />
 				</view>
 				<view class="header-true">
-					<view class="true-title" type="default" @click="link">确定</view>
+					<view class="true-title">确定</view>
 				</view>
 			</view>
 			<view class="add-tip">+</view>
@@ -19,8 +19,7 @@
 	export default {
 		data() {
 			return {
-				inviteCode:'',
-				number:''
+				
 			};
 		},
 		methods:{

@@ -6,7 +6,7 @@
 			<view class="header">
 				<view class="header-title">啊界面危险</view>
 				<view class="header-tip">
-					<navigator class="tip-title" url="/pages/index/index">开溜</navigator>
+					<navigator class="tip-title" url="/pages/index/index" open-type="switchTab">开溜</navigator>
 				</view>
 			</view>
 			<!-- 尾部 -->
@@ -91,13 +91,15 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-	.content{
-		height: 100vh;
-		width: 100vw;
+<style lang="scss" >
+	page{
 		background-image:url('http://47.114.75.140/doc/message/image/18b8b543-9ad7-11e8-aebe-1368d4ec24eb/1605771188509.jpg');
 		background-repeat: no-repeat;
 		background-size:100% 100%;
+	}
+	.content{
+		height: 100vh;
+		width: 100vw;
 		.header{
 			width: 100vw;
 			height: 40vh;
@@ -109,7 +111,7 @@
 				font-size: 72rpx;
 				color: #666666;
 				font-family: PingFangSC-regular;
-				padding-top: 200rpx;
+				padding-top: 100rpx;
 			}
 			.header-tip{
 				width: 100vw;
